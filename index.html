@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Internet of Dingus</title>
+		<title>Storybook Introduction</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -25,142 +25,55 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown>
-					# Internet of Dingus
+					# Storybook
+					## Or how I learned to stop worrying and love the component library
 					Ryan Parsley
 					Notes:
-            I hope to demystify the internet of things by creating an example to illustrate all the parts that make it work.
+						I've been using a library called Storybook to automatically generate a component library for the chat bot I've been working on. I'd like to introduce you to what it does and make a case why more projects  that we work on should probably use it or something like it.
 				</section>
 				<section data-markdown>
-					> The Internet of Things (IOT) is the network of physical devices, vehicles, home appliances and other items embedded with electronics, software, sensors, actuators, and connectivity which enables these objects to connect and exchange data. Each thing is uniquely identifiable through its embedded computing system but is able to inter-operate within the existing Internet infrastructure. &mdash;[Wikipedia](https://en.wikipedia.org/wiki/Internet_of_things)
-
+					# What is storybook!?
+					> The UI Development Environment You'll ♥️ to use &mdash;[the project's landing page](https://storybook.js.org/)
 					Notes:
-						Go ahead, soak that up. So, a thing can be a device, or a car, or an appliance or... well... anything.
-						Maybe the next line clears it up. Sensor (input), actuators (output) and connectivity (internet).
-						Uniquely Identifiable
-						Able to inter-operate withing the existing internet infrastructure.
-				</section>
-				<section>
-					<img src="img/confused.jpg" alt="It's not confusing. But, I'm confused" />
+						Perhaps to call it a tool for generating a component library is not doing it justice. The impact of using Storybook is bigger than checking off a requirement. It helps make better code, and communicate about your code more easily.
+
+						Easily integrates with React, Vue and Angular
 				</section>
 				<section data-markdown>
-						* Sensors (Input)
-						* Actuators (output)
-						* Uniquely Identifiable
-						* Connectivity (internet).
-						* Able to inter-operate withing the existing internet infrastructure. (yes, *that* internet)
-
+					# What's it look like?
 						Note:
-						* Sensors can be buttons or components that sense thinks like heat, humidity, light, proximity
-						* Actuators can be thought of as components that create output. Motors, Speakers, lights, relays.
-						* Uniquely Identifiable, we need to know which thing we're talking too or hearing from.
-						* The last two go together. The "thing" needs to be on the internet and not in too novel of a way.
+							* You can run it in dev mode so it live reloads as you work
+							* You can build it as a static site
 				</section>
 				<section data-markdown>
-					# Enter the dingus
+					# What does configuration look like?
 					Note:
-					A dingus is... a kind of a thing. For the rest of this talk, when I say "dingus" I'm talking about this hardware profile.
+						I'd say fairly minimal considering what you get
 				</section>
 				<section data-markdown>
-					## A Dingus
-					![A Dingus](img/dingus.png)
-
+					# What does a story look like under the hood?
 					Note:
-					A dingus has:
-					* Wifi
-					* One actuator
-					* One sensor
-
-					The reference dingus is a Huzzah Feather from a company called Adafruit. It's compatible with Arduino, but has wifi built in.
 				</section>
 				<section data-markdown>
-					## Internet of Dingus
-					![Internet of Dingus](img/internetOfDingus.jpg)
-				</section>
-				<section>
-					<img src="img/looks-right-to-me.jpg" alt="Looks right to me!"/>
+					# Unit test integration
 				</section>
 				<section data-markdown>
-					## Internet of Dingus
-					![Internet of Dingus](img/internetOfDingus.jpg)
-
-					Note:
-					3 servers come together to provide a specific piece of the puzzle.
-
-					Each dingus only interacts with one of the servers directly.
-
-					You don't *need* this level of separation, but I think it helps distil the conversation.
-
+					# Action Logger
 				</section>
 				<section data-markdown>
-					## Drupal backend
-					* Plain ol' web services
-					* Decoupled (headless) CMS
-					* Enables users to register a dingus and add meta data around it.
+					# knobs
 				</section>
 				<section data-markdown>
-					## Drupal Dingus API
-					```
-					{
-						id: "39269531-32df-4e16-a81c-13b7fd3860bf",
-						attributes: {
-							status: true,
-							title: "Lightbulb 1",
-							created: 1522939362,
-							changed: 1523906146,
-							body: { value: "<p>Hello Dingus!</p>" },
-							field_chip_id: 1085074
-						}
-					}
-					```
+					# Readme
 				</section>
 				<section data-markdown>
-					## WTF is MQTT!?
-					> MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol. &mdash;[mqtt.org](http://mqtt.org/)
-				</section>
-				<section data-markdown>
-					![nope](img/nope.gif)
-				</section>
-				<section data-markdown>
-					## WTF is MQTT!?
-					The de facto way for *things* to talk to each other.
-
-					* Publisher(s)
-					* Subscriber(s)
-					* Broker
-
-					Note:
-					It's a standard way of enabling publishing and subscribing messages.
-
-					If you think about MQTT as chat for things, the broker is the buddy list.
-				</section>
-				<section data-markdown>
-					## The Frontend
-					![Frontend](img/Internet_of_Dingus_view.png)
-
-					Note:
-					The frontend ties together real-time data from MQTT to the less dynamic meta data served via API that Drupal is responsible.
-				</section>
-				<section data-markdown>
-					# All this to turn on a light bulb!?
-
-					Note:
-					That's just the start. Any pairing of sensor and actuator works on this system
-
-					* Turn on a fan when it gets too hot
-					* Sound an alarm if the keg gets too light
-					* Water a plant if it gets too dry
-				</section>
-				<section data-markdown>
-					![Internet All The Things](img/internetAllTheThings.png)
+					# Viewport
 				</section>
 				<section data-markdown>
 					## Links
 
-					* [Drupal Server](http://iod-server.herokuapp.com/)
-					* [Frontend Client](https://iod-client.herokuapp.com/)
-					* [Adafruit's Broker Service](https://io.adafruit.com/ryanparsley/dashboards)
+					* [Storybook Project Page](https://storybook.js.org/)
 					* [Reveal.js (tool I built my slides with)](https://github.com/hakimel/reveal.js)
-					* [Source of this presentation](https://github.com/RyanParsley/iod-technicallySpeaking)
 
 				</section>
 			</div>
