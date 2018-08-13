@@ -15,10 +15,10 @@
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 	</head>
 	<body>
@@ -32,7 +32,7 @@
 
 					09/13/18
 					Notes:
-						I've been using a library called Storybook to automatically generate a component library for the chat bot I've been working on. I'd like to introduce you to what it does and make a case why more projects  that we work on should probably use it or something like it.
+					I've been using a library called Storybook to automatically generate a component library for the chat bot I've been working on. I'd like to introduce you to what it does and make a case why more projects  that we work on should probably use it or something like it.
 				</section>
 				<section data-markdown>
 					# What is storybook!?
@@ -43,17 +43,17 @@
 					* Perhaps to call it a tool for generating a component library is not doing it justice.
 					* The impact of using Storybook is bigger than checking off a requirement. It helps make better code, and communicate about your code more easily.
 					* Integrates with:
-						* React
-						* Vue
-						* Angular
+					* React
+					* Vue
+					* Angular
 
 				</section>
 				<section data-markdown>
 					## What's it look like?
 					![storybook](/img/storybook.png)
 					Notes:
-						* You can run it in dev mode so it live reloads as you work
-						* You can build it as a static site
+					* You can run it in dev mode so it live reloads as you work
+					* You can build it as a static site
 				</section>
 				<section data-markdown>
 					## What does configuration look like?
@@ -61,11 +61,11 @@
 					```
 					import { configure } from '@storybook/vue'
 					const req = require.context(
-						'../components',
-						true,
-						/\.stories\.js$/)
+					'../components',
+					true,
+					/\.stories\.js$/)
 					function loadStories () {
-						req.keys().forEach((filename) => req(filename))
+					req.keys().forEach((filename) => req(filename))
 					}
 					configure(loadStories, module)
 					```
@@ -77,12 +77,12 @@
 					## What does a story look like under the hood?
 					```
 					storiesOf('introContent', module)
-						.addDecorator(withReadme(readme))
-						.add('intro content as component', () => ({
-							store: store,
-							components: { introContent },
-							template: '<introContent/>'
-						}))
+					.addDecorator(withReadme(readme))
+					.add('intro content as component', () => ({
+					store: store,
+					components: { introContent },
+					template: '<introContent/>'
+					}))
 					```
 					Note:
 				</section>
@@ -95,12 +95,12 @@
 					* Viewport
 					```
 					storiesOf('introContent', module)
-						.addDecorator(withReadme(readme))
-						.add('intro content as component', () => ({
-							store: store,
-							components: { introContent },
-							template: '<introContent/>'
-						}))
+					.addDecorator(withReadme(readme))
+					.add('intro content as component', () => ({
+					store: store,
+					components: { introContent },
+					template: '<introContent/>'
+					}))
 					```
 					Note:
 				</section>
@@ -112,7 +112,7 @@
 					## Action Logger
 					```
 					methods: {
-						onSend: action('onSend')
+					onSend: action('onSend')
 					},
 					```
 					![storybook](/img/actionLogger.png)
@@ -121,11 +121,11 @@
 					## knobs
 					![storybook](/img/knobs.png)
 					```
-          mockMessage: {
-            message: 'Dinner will be here before you can say sizzle. Want some quick grilling.',
-            options: array('Options', ['Yep', 'Nope']),
-            sender: 'chuck'
-          }
+					mockMessage: {
+					message: 'Dinner will be here before you can say sizzle. Want some quick grilling.',
+					options: array('Options', ['Yep', 'Nope']),
+					sender: 'chuck'
+					}
 					```
 				</section>
 				<section data-markdown>
