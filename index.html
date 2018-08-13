@@ -26,48 +26,111 @@
 			<div class="slides">
 				<section data-markdown>
 					# Storybook
-					## Or how I learned to stop worrying and love the component library
+					## Or: how I learned to stop worrying and love the component
+
 					Ryan Parsley
+
+					09/13/18
 					Notes:
 						I've been using a library called Storybook to automatically generate a component library for the chat bot I've been working on. I'd like to introduce you to what it does and make a case why more projects  that we work on should probably use it or something like it.
 				</section>
 				<section data-markdown>
 					# What is storybook!?
-					> The UI Development Environment You'll ♥️ to use &mdash;[the project's landing page](https://storybook.js.org/)
-					Notes:
-						Perhaps to call it a tool for generating a component library is not doing it justice. The impact of using Storybook is bigger than checking off a requirement. It helps make better code, and communicate about your code more easily.
 
-						Easily integrates with React, Vue and Angular
+					> The UI Development Environment You'll ♥️ to use &mdash;[the project's landing page](https://storybook.js.org/)
+
+					Notes:
+					* Perhaps to call it a tool for generating a component library is not doing it justice.
+					* The impact of using Storybook is bigger than checking off a requirement. It helps make better code, and communicate about your code more easily.
+					* Integrates with:
+						* React
+						* Vue
+						* Angular
+
 				</section>
 				<section data-markdown>
-					# What's it look like?
-						Note:
-							* You can run it in dev mode so it live reloads as you work
-							* You can build it as a static site
+					## What's it look like?
+					![storybook](/img/storybook.png)
+					Notes:
+						* You can run it in dev mode so it live reloads as you work
+						* You can build it as a static site
 				</section>
 				<section data-markdown>
-					# What does configuration look like?
+					## What does configuration look like?
+
+					```
+					import { configure } from '@storybook/vue'
+					const req = require.context(
+						'../components',
+						true,
+						/\.stories\.js$/)
+					function loadStories () {
+						req.keys().forEach((filename) => req(filename))
+					}
+					configure(loadStories, module)
+					```
+
+					Notes:
+					I'd say fairly minimal considering what you get
+				</section>
+				<section data-markdown>
+					## What does a story look like under the hood?
+					```
+					storiesOf('introContent', module)
+						.addDecorator(withReadme(readme))
+						.add('intro content as component', () => ({
+							store: store,
+							components: { introContent },
+							template: '<introContent/>'
+						}))
+					```
 					Note:
-						I'd say fairly minimal considering what you get
 				</section>
 				<section data-markdown>
-					# What does a story look like under the hood?
+					##  Configurable via `Addons`
+					* Action Logger
+					* Knobs
+					* Tests
+					* Readme
+					* Viewport
+					```
+					storiesOf('introContent', module)
+						.addDecorator(withReadme(readme))
+						.add('intro content as component', () => ({
+							store: store,
+							components: { introContent },
+							template: '<introContent/>'
+						}))
+					```
 					Note:
 				</section>
 				<section data-markdown>
-					# Unit test integration
+					## Unit test integration
+					![storybook](/img/unitTestIntegration.png)
 				</section>
 				<section data-markdown>
-					# Action Logger
+					## Action Logger
+					```
+					methods: {
+						onSend: action('onSend')
+					},
+					```
+					![storybook](/img/actionLogger.png)
 				</section>
 				<section data-markdown>
-					# knobs
+					## knobs
+					![storybook](/img/knobs.png)
+					```
+          mockMessage: {
+            message: 'Dinner will be here before you can say sizzle. Want some quick grilling.',
+            options: array('Options', ['Yep', 'Nope']),
+            sender: 'chuck'
+          }
+					```
 				</section>
 				<section data-markdown>
-					# Readme
-				</section>
-				<section data-markdown>
-					# Viewport
+					## Readme
+					![storybook](/img/readme.png)
 				</section>
 				<section data-markdown>
 					## Links
