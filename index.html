@@ -41,32 +41,50 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 					Notes:
 					* Perhaps to call it a tool for generating a component library is not doing it justice.
-					* The impact of using Storybook is bigger than checking off a requirement. It helps make better code, and communicate about your code more easily.
+					* The impact of using Storybook is bigger than checking off a deliverable requirement. It helps make better code, and communicate about your code more easily.
 					* Integrates with:
 					* React
 					* Vue
 					* Angular
+				</section>
+				<section data-markdown>
+					# Build durable documented UI faster
 
+					Notes:
+					* Observing components in isolation
+					* Easily manipulate data
+					* Provides a documentation pattern
+					* Clues for future developers
 				</section>
 				<section data-markdown>
 					## What's it look like?
+
 					![storybook](/img/storybook.png)
+
 					Notes:
+					* Three panes:
+						* Navigation
+						* Preview
+						* Meta data
 					* You can run it in dev mode so it live reloads as you work
 					* You can build it as a static site
+
 				</section>
 				<section data-markdown>
 					## What does configuration look like?
 
 					```
 					import { configure } from '@storybook/vue'
+
 					const req = require.context(
-					'../components',
-					true,
-					/\.stories\.js$/)
+						'../components',
+						true,
+						/\.stories\.js$/)
+
 					function loadStories () {
-					req.keys().forEach((filename) => req(filename))
+						req.keys().forEach((filename) => req(filename))
 					}
+
 					configure(loadStories, module)
 					```
 
@@ -77,14 +95,21 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 					## What does a story look like under the hood?
 					```
 					storiesOf('introContent', module)
-					.addDecorator(withReadme(readme))
-					.add('intro content as component', () => ({
-					store: store,
-					components: { introContent },
-					template: '<introContent/>'
-					}))
+						.addDecorator(withReadme(readme))
+						.add('intro content as component', () => ({
+							store: store,
+							components: { introContent },
+							template: '<introContent/>'
+						}))
 					```
-					Note:
+					Notes:
+					If you squint your eyes, it kind of looks like a unit test.
+
+					We'll circle back to addDecorator(), but look at the following
+
+					* storiesOf is akin to Describe
+					* add is like an it block
+					* Instead of making assertions, we render the component
 				</section>
 				<section data-markdown>
 					##  Configurable via `Addons`
@@ -95,18 +120,33 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 					* Viewport
 					```
 					storiesOf('introContent', module)
-					.addDecorator(withReadme(readme))
-					.add('intro content as component', () => ({
-					store: store,
-					components: { introContent },
-					template: '<introContent/>'
-					}))
+						.addDecorator(withReadme(readme))
+						.add('intro content as component', () => ({
+							store: store,
+							components: { introContent },
+							template: '<introContent/>'
+						}))
 					```
-					Note:
+					Notes:
+					Addons provide more meta info about your component.
+
+					In this example, addDecorator(withReadme()) declares we want to display a readme file in a tab.
+				</section>
+				<section data-markdown>
+					## What does this *actually* communicate?
+					![storybook](/img/coverageBefore.png)
+
+					Notes:
+					On the topic of exposing useful information to non-developers...
+
+					Coverage reports can be exposed to non-developers via tools like SonarQube, but is this a good way to communicate... anything?
 				</section>
 				<section data-markdown>
 					## Unit test integration
 					![storybook](/img/unitTestIntegration.png)
+
+					Notes:
+					More humane *and* contextually relevant
 				</section>
 				<section data-markdown>
 					## Action Logger
@@ -116,21 +156,36 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 					},
 					```
 					![storybook](/img/actionLogger.png)
+					Notes:
+					Friends don't let friends commit console logs.
+
+					Sometimes they've felt like the best way to communicate intent, this is better.
+
+					Keep those notes in the story and out of your component's source code.
 				</section>
 				<section data-markdown>
 					## knobs
 					![storybook](/img/knobs.png)
 					```
 					mockMessage: {
-					message: 'Dinner will be here before you can say sizzle. Want some quick grilling.',
-					options: array('Options', ['Yep', 'Nope']),
-					sender: 'chuck'
+						message: 'Dinner will be here before you can say sizzle. Want some quick grilling.',
+						options: array('Options', ['Yep', 'Nope']),
+						sender: 'chuck'
 					}
 					```
+
+					Notes:
+					Live updates of data manipulation:
+					* Does a long title break layout on mobile?
+					* Easily demonstrate UI changes based on data
+						* 2 options look different than 3 options in this instance
 				</section>
 				<section data-markdown>
 					## Readme
 					![storybook](/img/readme.png)
+
+					Notes:
+					Documentation is good. Often, we miss a trick when we can't share this outside of the developer silo.
 				</section>
 				<section data-markdown>
 					## Links
